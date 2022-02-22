@@ -21,8 +21,8 @@ public class FlyTicket implements Comparable<FlyTicket> {
         return this.cost - o.cost;
     }
 
-    public boolean matches(String aeroportFrom,String aeroportTo) {
-        if (getAeroportFrom().contains(aeroportFrom)&&getAeroportTo().contains(aeroportTo)) {
+    public boolean matches(String aeroportFrom, String aeroportTo) {
+        if (getAeroportFrom().contains(aeroportFrom) && getAeroportTo().contains(aeroportTo)) {
             return true;
         } else {
             return false;
