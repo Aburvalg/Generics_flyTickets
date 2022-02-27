@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,6 +58,18 @@ class FlyTicketsManagerTest {
 
         FlyTicket[] expected = {third};
         FlyTicket[] actual = manager.findAllWithSearch("DME", "AST");
+
+        Arrays.sort(actual);
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void findAllWithSortComparator() {
+        manager.add(forth);
+        manager.add(fifth);
+
+        FlyTicket[] expected = {forth, third, fifth};
+        FlyTicket[] actual = manager.findAllSearchWithComparator("DME", "AST", Comparator <FlyTicket>);
 
         Arrays.sort(actual);
         assertArrayEquals(expected, actual);
