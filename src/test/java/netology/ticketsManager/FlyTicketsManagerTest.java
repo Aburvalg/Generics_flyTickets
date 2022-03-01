@@ -34,7 +34,7 @@ class FlyTicketsManagerTest {
         manager.add(sixth);
         manager.add(forth);
 
-        FlyTicket[] expected = {sixth,forth, third, fifth};
+        FlyTicket[] expected = {sixth, forth, third, fifth};
         FlyTicket[] actual = manager.findAllWithSearchAndSort("DME", "AST");
 
         assertArrayEquals(expected, actual);
