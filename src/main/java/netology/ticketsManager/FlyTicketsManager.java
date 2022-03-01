@@ -3,6 +3,8 @@ package netology.ticketsManager;
 import netology.domain.FlyTicket;
 import netology.repository.TicketsRepository;
 
+import java.util.Arrays;
+
 public class FlyTicketsManager {
     private FlyTicket[] tickets = new FlyTicket[0];
     private TicketsRepository repository;
@@ -30,7 +32,7 @@ public class FlyTicketsManager {
         return result;
     }
 
-    public FlyTicket[] findAllWithSearch(String aeroportFrom, String aeroportTo) {
+    public FlyTicket[] findAllWithSearchAndSort(String aeroportFrom, String aeroportTo) {
         FlyTicket[] result = new FlyTicket[tickets.length];
         for (FlyTicket ticket : searchByFromTo(aeroportFrom, aeroportTo)) {
             int length = result.length + 1;    // "добавляем в конец" массива result продукт product
@@ -39,7 +41,7 @@ public class FlyTicketsManager {
             int lastIndex = tmp.length - 1;
             tmp[lastIndex] = ticket;
             result = tmp;
-
+            Arrays.sort(result);
         }
         return result;
     }

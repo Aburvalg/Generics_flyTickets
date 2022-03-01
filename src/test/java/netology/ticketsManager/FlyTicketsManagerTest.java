@@ -19,6 +19,7 @@ class FlyTicketsManagerTest {
 
     private FlyTicket forth = new FlyTicket(4, 200, "DME", "AST", 100);
     private FlyTicket fifth = new FlyTicket(5, 400, "DME", "AST", 100);
+    private FlyTicket sixth = new FlyTicket(6, 100, "DME", "AST", 90);
 
     @BeforeEach
     public void setUp() {
@@ -28,35 +29,35 @@ class FlyTicketsManagerTest {
     }
 
     @Test
-    void findAllWithSort() {
-        manager.add(forth);
+    void shouldFindAllWithSort() {
         manager.add(fifth);
+        manager.add(sixth);
+        manager.add(forth);
 
-        FlyTicket[] expected = {forth, third, fifth};
-        FlyTicket[] actual = manager.findAllWithSearch("DME", "AST");
+        FlyTicket[] expected = {sixth,forth, third, fifth};
+        FlyTicket[] actual = manager.findAllWithSearchAndSort("DME", "AST");
 
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void showAllByFromToEmptyRepo() {
+    void ShouldShowAllByFromToEmptyRepo() {
         repo.removeById(1);
         repo.removeById(2);
         repo.removeById(3);
 
         FlyTicket[] expected = {};
-        FlyTicket[] actual = manager.findAllWithSearch("DME", "AST");
+        FlyTicket[] actual = manager.findAllWithSearchAndSort("DME", "AST");
 
         Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    void showAllByFromToOneTicket() {
+    void ShouldShowAllByFromToOneTicket() {
 
         FlyTicket[] expected = {third};
-        FlyTicket[] actual = manager.findAllWithSearch("DME", "AST");
+        FlyTicket[] actual = manager.findAllWithSearchAndSort("DME", "AST");
 
         Arrays.sort(actual);
         assertArrayEquals(expected, actual);
